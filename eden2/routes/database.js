@@ -49,16 +49,29 @@ router.get('/GET/Children', function(req, res, next) {
 
 router.post('/POST/Recording', function(req, res, next) {
     var pyshell = new PythonShell('autismtrain.py', pyoptions);
-    pyshell.send('test2.wav');
+    pyshell.send('hello1.wav');
     pyshell.on('message', function (message) {
-        console.log("MESSAGE: " + message); 
+        res.send(message);
     });
 
     pyshell.end(function (err) {
         if (err) throw err;
         console.log('done with pyshell');
     });
-    res.send('hello world');
+});
+
+router.post('/POST/Compare', function(req, res, next) {
+    var pyshell = new PythonShell('autismtest.py', pyoptions);
+    pyshell.send('hello1.wav');
+    pyshell.send('hello3.txt');
+    pyshell.on('message', function (message) {
+        res.send(message);
+    });
+
+    pyshell.end(function (err) {
+        if (err) throw err;
+        console.log('done with pyshell');
+    });
 });
 
 module.exports = router;
