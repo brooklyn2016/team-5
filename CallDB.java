@@ -15,7 +15,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class CallDB {
     static String url_address = "http://54.88.195.178:3000";
     public static void main(String[] args) {
-        System.out.print(getTable("/database/GET/Users"));
+        System.out.print(sendRecording());
     }
 
     public static String getTable(String table){
@@ -29,18 +29,9 @@ public class CallDB {
         }
         return table_data;
     }
-    public static void insertTable_log(int id, String employee, String client, String rep, String datetime,boolean done, String ticker_sentiment, String notes){
-        String POST = "id=" + Integer.toString(id) + "&employee=" + employee + "&client=" + client
-                + "&rep=" + rep + "&datetime=" + datetime + "&done=";
-        if (done==true){
-            POST += "true";
-        }
-        else{
-            POST += "false";
-        }
-        POST = POST + "&ticker_sentiment=" + ticker_sentiment + "&notes=" + notes;
+    public static String sendRecording(){
         try {
-            URL url = new URL( url_address + "log_write");
+            URL url = new URL( url_address + "/database/POST/recording");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setDoOutput(true);
             con.setRequestMethod("POST");
@@ -50,7 +41,7 @@ public class CallDB {
             con.connect();
 
             DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-            wr.writeBytes( "log_write?" + POST );
+            wr.writeBytes("");
             wr.flush();
             wr.close();
 
