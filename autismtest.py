@@ -26,9 +26,9 @@ try:
     autismoinput = re.sub("[^\w]", " ", r.recognize_google(audio)).split()
     output = []
     train = dict()
-    lines = open(files[1]).read().splitlines()
+    lines = open(files[1].rstrip()).read().splitlines()
     for line in lines:
-        words = line.split('&')
+        word = line.split('&')
         train[word[0]] = word[1]
     headers = { "X-Mashape-Key": "IpoJf4zXvAmshlkkbGjK0heE1N03p1AgXXvjsnvFC5cbLgshi7",  "Accept": "application/json" }
     for word in autismoinput:
