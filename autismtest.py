@@ -15,7 +15,7 @@ for line in fileinput.input():
     files.append(line)
 
 
-AUDIO_FILE = path.join(path.dirname(path.realpath(__file__)), files[0])
+AUDIO_FILE = path.join(path.dirname(path.realpath(__file__)), files[0].rstrip())
 
 r = sr.Recognizer()
 
