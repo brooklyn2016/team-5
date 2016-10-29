@@ -11,17 +11,17 @@ files = []
 for line in fileinput.input():
     files.append(line)
 
-AUDIO_FILE = path.join(path.dirname(path.realpath(__file__)), files[0])
+AUDIO_FILE = path.join(path.dirname(path.realpath(__file__)), files[0].rstrip())
 
 r = sr.Recognizer()
 with sr.AudioFile(AUDIO_FILE) as source:
     audio = r.record(source)
 
 try:
-    print("Google Speech Recognition thinks you said " + r.recognize_google(audio))
     autismoinput = re.sub("[^\w]", " ", r.recognize_google(audio)).split()
     count  = len(autismoinput)
     s_autismoinput = str(count) + ','
+    shalin=""
     for word in autismoinput:
         shalin += word + '&' 
     print (shalin)
