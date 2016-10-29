@@ -13,6 +13,7 @@
     "hbs": "~4.0.0",
     "morgan": "~1.7.0",
     "mysql": "^2.11.1",
+    "python-shell": "^0.4.0",
     "serve-favicon": "~2.3.0"
   }
 }
